@@ -1,0 +1,19 @@
+{
+  "namespace": "dev.alefiengo.KafkaSchemaRegistryAvro.avro.model",
+  "type": "record",
+  "name": "User",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    }
+  ]
+}
