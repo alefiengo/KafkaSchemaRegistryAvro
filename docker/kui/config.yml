@@ -1,0 +1,12 @@
+auth:
+  type: DISABLED
+kafka:
+  clusters:
+  - bootstrapServers: http://kafka:9092
+    name: Localhost Broker
+    properties: {}
+    readOnly: false
+    schemaRegistry: http://schema-registry:8090
+rbac:
+  roles: []
+webclient: {}
