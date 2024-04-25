@@ -1,7 +1,10 @@
+name: kafka-avro
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
+    hostname: zookeeper
+    restart: unless-stopped
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -10,7 +13,9 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka
     hostname: kafka
+    restart: unless-stopped
     depends_on:
       - zookeeper
     ports:
@@ -25,7 +30,9 @@ services:
 
   schema-registry:
     image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
     hostname: schema-registry
+    restart: unless-stopped
     depends_on:
       - kafka
     ports:
@@ -36,3 +43,17 @@ services:
       SCHEMA_REGISTRY_LISTENERS: 'http://0.0.0.0:8090'
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
       SCHEMA_REGISTRY_DEBUG: 'true'
+
+  kui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kui
+    hostname: kui
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    ports:
+      - 8085:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    volumes:
+      - ./docker/kui/config.yml:/etc/kafkaui/dynamic_config.yaml

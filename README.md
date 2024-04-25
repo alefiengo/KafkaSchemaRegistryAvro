@@ -1,10 +1,13 @@
 # Getting Started
 
 ### Docker
-Run containers (Zookeper, Kafka y Schema Registry)
+Run containers (Zookeper, Kafka, Schema Registry and Kafka UI)
 ```
 docker compose up -d
 ```
+
+### Application
+Run application
 
 ### Test
 ```
@@ -17,3 +20,8 @@ curl --request POST \
 	"lastName": "Sinatra"
 }'
 ```
+
+### kafka UI
+Open local kafka-ui in a browser
+
+[http://localhost:8085](http://localhost:8085)
